@@ -54,6 +54,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
   bool get temPerguntaSelecionada {
     return _perguntasSelecionadas < _perguntas.length;
   }
+
+  ///dasdasdasdasdas
   // void Function() funcaoQueRetornaUmaFuncao(){
   //     return () {
   //       print('Pergunta respondida #01');
