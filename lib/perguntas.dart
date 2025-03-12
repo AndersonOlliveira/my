@@ -7,13 +7,13 @@ import './resultado.dart';
 class Questionario extends StatelessWidget {
   final int perguntaSelecionada;
   final List<Map<String, dynamic>> perguntas;
-  final void Function() QuandoResponder;
+  final void Function(int) quandoResponder;
 
   //metodo construtor
-  Questionario({
+  const Questionario({super.key, 
     required this.perguntaSelecionada,
     required this.perguntas,
-    required this.QuandoResponder,
+    required this.quandoResponder,
   });
 
   bool get temPerguntaSelecionada {
@@ -30,9 +30,12 @@ class Questionario extends StatelessWidget {
     return Column(
       children: <Widget>[
         Questao(perguntas[perguntaSelecionada]['text'].toString()),
-        ...respostas
-            .map((resp) => Resposta(resp['texto'] as String, QuandoResponder))
-            .toList(),
+        ...respostas.map((resp) {
+          return Resposta(
+            resp['texto'].toString(),
+            () => quandoResponder(int.parse(resp['pontuacao'].toString())),
+          );
+        }),
       ],
     );
   }
